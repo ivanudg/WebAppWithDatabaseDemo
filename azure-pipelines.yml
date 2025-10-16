@@ -34,7 +34,7 @@ steps:
   inputs:
     azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
     command: 'test'
-    projects: '**/WebApp.csproj'
+    projects: '**/*UnitTest*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
