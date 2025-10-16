@@ -30,6 +30,14 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: Run Unit Tests
+  inputs:
+    azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
+    command: 'test'
+    projects: '**/WebApp.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
   displayName: Create Web App Package (.zip)
   inputs:
     azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
