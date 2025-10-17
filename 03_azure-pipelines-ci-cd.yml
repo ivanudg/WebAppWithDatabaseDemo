@@ -49,8 +49,10 @@ stages:
     - task: DotNetCoreCLI@2
       displayName: Restore Nuget Packages
       inputs:
-        command: restore
+        azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
+        command: 'restore'
         projects: '**/WebApp.csproj'
+        feedsToUse: 'select'
     
     - task: WhiteSource Bolt@20
       displayName: Scan Nuget Packages
