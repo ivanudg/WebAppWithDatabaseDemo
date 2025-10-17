@@ -82,13 +82,16 @@ stages:
       displayName: Prepare analysis on SonarCloud
       enabled: ${{ parameters.runCompletePipeline }}
       inputs:
-        SonarCloud: SonarCloud
-        organization: houssemdellai
-        projectKey: WebAppWithDatabaseDemo
+        SonarCloud: 'SonarCloud'
+        organization: 'ivanudg'
+        scannerMode: 'MSBuild'
+        projectKey: 'WebAppWithDatabaseDemo'
 
     - task: DotNetCoreCLI@2
       displayName: Build WebApp
       inputs:
+        azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
+        command: 'build'
         projects: '**/WebApp.csproj'
         arguments: '--configuration $(BuildConfiguration)'
 
@@ -96,17 +99,18 @@ stages:
       displayName: Run Unit Tests
       enabled: ${{ parameters.runCompletePipeline }}
       inputs:
-        command: test
+        azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
+        command: 'test'
         projects: '**/*UnitTest*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
 
     - task: DotNetCoreCLI@2
       displayName: Create WebApp.zip
       inputs:
-        command: publish
-        publishWebProjects: True
+        azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
+        command: 'publish'
+        publishWebProjects: true
         arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-        zipAfterPublish: True
 
     - task: SonarCloudAnalyze@1
       displayName: Run Code Analysis
