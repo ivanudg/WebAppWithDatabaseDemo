@@ -24,8 +24,10 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: Restore
     inputs:
-      command: restore
+      azureSubscription: 'Azure subscription 1(cfdcc8b6-612d-4683-9b0f-db0320baca41)'
+      command: 'restore'
       projects: '**/WebApp.csproj'
+      feedsToUse: 'select'
   
   - powershell: |
      $paths = Get-ChildItem -include *.csproj -Recurse
