@@ -54,9 +54,15 @@ stages:
         projects: '**/WebApp.csproj'
         feedsToUse: 'select'
     
-    - task: WhiteSource Bolt@20
+    #- task: WhiteSource Bolt@20
+    #  displayName: Scan Nuget Packages
+    #  enabled: ${{ parameters.runCompletePipeline }}
+
+    - task: WhiteSource@21
       displayName: Scan Nuget Packages
-      enabled: ${{ parameters.runCompletePipeline }}
+      inputs:
+        cwd: '$(System.DefaultWorkingDirectory)'
+        projectName: '${{ parameters.runCompletePipeline }}'
 
     - task: PowerShell@2
       displayName: Prepare for Sonar Cloud
