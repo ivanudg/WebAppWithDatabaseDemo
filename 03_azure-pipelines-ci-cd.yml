@@ -58,11 +58,11 @@ stages:
     #  displayName: Scan Nuget Packages
     #  enabled: ${{ parameters.runCompletePipeline }}
 
-    - task: WhiteSource@21
-      displayName: Scan Nuget Packages
-      inputs:
-        cwd: '$(System.DefaultWorkingDirectory)'
-        projectName: '${{ parameters.runCompletePipeline }}'
+    #- task: WhiteSource@21
+    #  displayName: Scan Nuget Packages
+    #  inputs:
+    #    cwd: '$(System.DefaultWorkingDirectory)'
+    #    projectName: '${{ parameters.runCompletePipeline }}'
 
     - task: PowerShell@2
       displayName: Prepare for Sonar Cloud
